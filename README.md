@@ -9,9 +9,9 @@ A Shopware plugin that exposes the free trext fields (attributes) via REST API.
 
 The `attributes` resource supports the following operations:
 
-| Name           |  Access URL              | GET    | GET (List) | PUT | PUT (Batch) | POST | DELETE | DELETE (Batch) |
-|----------------|--------------------------|--------|------------|-----|-------------|------|--------|----------------|
-| **attributes** | /api/attributes/{entity} |  Yes   | YES        | YES | NO          | YES  | YES    | NO             |
+| Name           |  Access URL     | GET    | GET (List) | PUT | PUT (Batch) | POST | DELETE | DELETE (Batch) |
+|----------------|-----------------|--------|------------|-----|-------------|------|--------|----------------|
+| **attributes** | /api/attributes |  Yes   | YES        | YES | NO          | YES  | YES    | NO             |
 
 ### GET
 
