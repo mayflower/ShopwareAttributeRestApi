@@ -12,7 +12,7 @@ It's intended to be used for automation of the free text field management.
 ## Setup
 
 Enable API Access as explained in
- Shopware's REST API Documentation](https://developers.shopware.com/developers-guide/rest-api/#basic-settings).
+[Shopware's REST API Documentation](https://developers.shopware.com/developers-guide/rest-api/#basic-settings).
 
 ## Usage
 
