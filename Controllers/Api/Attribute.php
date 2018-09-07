@@ -35,7 +35,7 @@ class Shopware_Controllers_Api_Attribute extends Shopware_Controllers_Api_Rest
     /**
      * Get one entity
      *
-     * GET /api/attribute/{tableName}?{columnName}
+     * GET /api/attribute/{tableName}?column_name={columnName}
      */
     public function getAction()
     {
@@ -51,13 +51,15 @@ class Shopware_Controllers_Api_Attribute extends Shopware_Controllers_Api_Rest
     /**
      * Create new entity
      *
-     * POST /api/attribute}
+     * POST /api/attribute
+     *
+     * @throws Exception
      */
     public function postAction()
     {
         $entity = $this->resource->create($this->Request()->getPost());
 
-        $location = $this->apiBaseUrl . 'attribute/' . $entity->getId();
+        $location = $this->apiBaseUrl . 'attribute/' . $entity->getTableName() . '?column_name=' . $entity->getColumnName();
         $data = array(
             'id'       => $entity->getId(),
             'location' => $location
@@ -70,17 +72,18 @@ class Shopware_Controllers_Api_Attribute extends Shopware_Controllers_Api_Rest
     /**
      * Update entity
      *
-     * PUT /api/attribute/{id}
+     * PUT /api/attribute/{tableName}
+     * @throws Exception
      */
     public function putAction()
     {
-        $id = $this->Request()->getParam('id');
-        $params = $this->Request()->getPost();
+        $tableName = $this->Request()->getParam('id');
+        $data      = $this->Request()->getPost();
 
 
-        $entity = $this->resource->update($id, $params);
+        $entity = $this->resource->update($tableName, $data);
 
-        $location = $this->apiBaseUrl . 'attribute/' . $entity->getId();
+        $location = $this->apiBaseUrl . 'attribute/' . $entity->getTableName() . '?column_name=' . $entity->getColumnName();
         $data = array(
             'id'       => $entity->getId(),
             'location' => $location
@@ -93,13 +96,16 @@ class Shopware_Controllers_Api_Attribute extends Shopware_Controllers_Api_Rest
     /**
      * Delete entity
      *
-     * DELETE /api/attribute/{id}
+     * DELETE /api/attribute/{tableName}?column_name={columnName}
+     *
+     * @throws Exception
      */
     public function deleteAction()
     {
-        $id = $this->Request()->getParam('id');
+        $tableName  = $this->Request()->getParam('id');
+        $columnName = $this->Request()->getParam('column_name');
 
-        $this->resource->delete($id);
+        $this->resource->delete($tableName, $columnName);
 
         $this->View()->assign(array('success' => true));
     }

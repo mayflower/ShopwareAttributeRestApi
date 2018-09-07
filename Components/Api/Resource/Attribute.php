@@ -54,35 +54,49 @@ class Attribute extends Resource
     /**
      * Create a new entity with $data
      *
-     * @param $data
-     * @return array
+     * @param array $data
+     *
+     * @return null|\Shopware\Bundle\AttributeBundle\Service\ConfigurationStruct
+     *
+     * @throws \Exception
      */
-    public function create($data)
+    public function create(array $data)
     {
-        return ['create'];
+        $tableName = $data['tableName'];
+
+        return $this->update($tableName, $data);
     }
 
     /**
      * Update a given entity $id with $data
      *
-     * @param $id
-     * @param $data
-     * @return array
+     * @param string $tableName
+     * @param array $data
+     * @return null|\Shopware\Bundle\AttributeBundle\Service\ConfigurationStruct
+     * @throws \Exception
      */
-    public function update($id, $data)
+    public function update($tableName, array $data)
     {
-        return ['update'];
+        $columnName  = $data['columnName'];
+        $unifiedType = $data['unifiedType'];
+        $attrData    = $data['data'];
+
+        $this->crudService->update($tableName, $columnName, $unifiedType, $attrData);
+
+        return $this->crudService->get($tableName, $columnName);
     }
 
     /**
      * Delete the given entity
      *
-     * @param $id
+     * @param $tableName
+     * @param $columnName
      * @return array
+     * @throws \Exception
      */
-    public function delete($id)
+    public function delete($tableName, $columnName)
     {
-        return ['delete'];
+        return $this->crudService->delete($tableName, $columnName);
     }
 
 }
