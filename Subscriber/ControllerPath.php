@@ -23,14 +23,24 @@ class ControllerPath implements SubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-                        'Enlight_Controller_Dispatcher_ControllerPath_Api_AttributeModel' => 'getApiControllerAttributeModel'        );
+            'Enlight_Controller_Dispatcher_ControllerPath_Api_Attribute' => 'getApiControllerAttribute'
+        );
     }
 
 
-    public function getApiControllerAttributeModel(\Enlight_Event_EventArgs $args)
+    public function getApiControllerAttribute(\Enlight_Event_EventArgs $args)
     {
-        return __DIR__ . '/../Controllers/Api/AttributeModel.php';
+        return __DIR__ . '/../Controllers/Api/Attribute.php';
     }
 
+    /**
+     * @return void
+     */
+    protected function registerComponents()
+    {
+        $pluginDir = $this->container->getParameter('shopware_attribute_rest_api.plugin_dir');
+
+        require_once $pluginDir . '/vendor/autoload.php';
+    }
 
 }

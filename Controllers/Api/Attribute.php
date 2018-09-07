@@ -1,29 +1,30 @@
 <?php
 
-class Shopware_Controllers_Api_AttributeModel extends Shopware_Controllers_Api_Rest
+class Shopware_Controllers_Api_Attribute extends Shopware_Controllers_Api_Rest
 {
+
     /**
-     * @var \Shopware\Components\Api\Resource\AttributeModel     */
+     * @var \Shopware\Components\Api\Resource\Attribute
+     */
     protected $resource = null;
 
     public function init()
     {
-        $this->resource = \Shopware\Components\Api\Manager::getResource('AttributeModel');
+        try {
+            $this->resource = \Shopware\Components\Api\Manager::getResource('Attribute');
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 
     /**
      * Get list of entities
      *
-     * GET /api/attributemodel/
+     * GET /api/attribute/
      */
     public function indexAction()
     {
-        $limit  = $this->Request()->getParam('limit', 1000);
-        $offset = $this->Request()->getParam('start', 0);
-        $sort   = $this->Request()->getParam('sort', array());
-        $filter = $this->Request()->getParam('filter', array());
-
-        $result = $this->resource->getList($offset, $limit, $filter, $sort);
+        $result = $this->resource->getList();
 
         $this->View()->assign($result);
         $this->View()->assign('success', true);
@@ -32,7 +33,7 @@ class Shopware_Controllers_Api_AttributeModel extends Shopware_Controllers_Api_R
     /**
      * Get one entity
      *
-     * GET /api/attributemodel/{id}
+     * GET /api/attribute/{id}
      */
     public function getAction()
     {
@@ -47,13 +48,13 @@ class Shopware_Controllers_Api_AttributeModel extends Shopware_Controllers_Api_R
     /**
      * Create new entity
      *
-     * POST /api/attributemodel}
+     * POST /api/attribute}
      */
     public function postAction()
     {
         $entity = $this->resource->create($this->Request()->getPost());
 
-        $location = $this->apiBaseUrl . 'attributemodel/' . $entity->getId();
+        $location = $this->apiBaseUrl . 'attribute/' . $entity->getId();
         $data = array(
             'id'       => $entity->getId(),
             'location' => $location
@@ -66,7 +67,7 @@ class Shopware_Controllers_Api_AttributeModel extends Shopware_Controllers_Api_R
     /**
      * Update entity
      *
-     * PUT /api/attributemodel/{id}
+     * PUT /api/attribute/{id}
      */
     public function putAction()
     {
@@ -76,7 +77,7 @@ class Shopware_Controllers_Api_AttributeModel extends Shopware_Controllers_Api_R
 
         $entity = $this->resource->update($id, $params);
 
-        $location = $this->apiBaseUrl . 'attributemodel/' . $entity->getId();
+        $location = $this->apiBaseUrl . 'attribute/' . $entity->getId();
         $data = array(
             'id'       => $entity->getId(),
             'location' => $location
@@ -89,7 +90,7 @@ class Shopware_Controllers_Api_AttributeModel extends Shopware_Controllers_Api_R
     /**
      * Delete entity
      *
-     * DELETE /api/attributemodel/{id}
+     * DELETE /api/attribute/{id}
      */
     public function deleteAction()
     {

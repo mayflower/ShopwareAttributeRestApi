@@ -10,8 +10,9 @@
             <tag name="shopware.event_subscriber" />
         </service>
 
-
-
+        <service id="shopware.api.attribute" class="ShopwareAttributeRestApi\Components\Api\Resource\Attribute">
+            <argument id="shopware_attribute.crud_service" type="service" />
+        </service>
 
         <service id="shopware_attribute_rest_api.subscriber.api_subscriber" class="ShopwareAttributeRestApi\Subscriber\ApiSubscriber">
             <argument id="service_container" type="service" />

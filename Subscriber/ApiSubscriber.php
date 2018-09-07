@@ -39,7 +39,7 @@ class ApiSubscriber implements SubscriberInterface
     {
         $this->container->get('Loader')->registerNamespace(
             'Shopware\Components\Api',
-            $this->container->getParameter('shopware_attribute_rest_api.plugin_dir') . 'Components/Api/'
+            $this->container->getParameter('shopware_attribute_rest_api.plugin_dir') . 'Components/Api/Resource'
         );
     }
 }
