@@ -27,23 +27,28 @@ class Attribute extends Resource
     /**
      * Return a list of entities
      *
+     * @param string $tableName
+     *
      * @return array
      */
-    public function getList()
+    public function getList($tableName)
     {
-        return array('data' => [], 'total' => []);
+        $data = $this->crudService->getList($tableName);
+
+        return array('data' => $data, 'total' => count($data));
     }
 
 
     /**
      * Read the given entity $id
      *
-     * @param $id
+     * @param string $tableName
+     * @param string $columnName
      * @return array
      */
-    public function getOne($id)
+    public function getOne($tableName, $columnName)
     {
-        return ['getOne'];
+        return $this->crudService->get($tableName, $columnName);
     }
 
     /**

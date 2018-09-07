@@ -4,7 +4,7 @@ class Shopware_Controllers_Api_Attribute extends Shopware_Controllers_Api_Rest
 {
 
     /**
-     * @var \Shopware\Components\Api\Resource\Attribute
+     * @var \ShopwareAttributeRestApi\Components\Api\Resource\Attribute
      */
     protected $resource = null;
 
@@ -20,11 +20,13 @@ class Shopware_Controllers_Api_Attribute extends Shopware_Controllers_Api_Rest
     /**
      * Get list of entities
      *
-     * GET /api/attribute/
+     * GET /api/attribute?{tableName}
      */
     public function indexAction()
     {
-        $result = $this->resource->getList();
+        $tableName = $this->Request()->getParam('table_name');
+
+        $result = $this->resource->getList($tableName);
 
         $this->View()->assign($result);
         $this->View()->assign('success', true);
@@ -33,13 +35,14 @@ class Shopware_Controllers_Api_Attribute extends Shopware_Controllers_Api_Rest
     /**
      * Get one entity
      *
-     * GET /api/attribute/{id}
+     * GET /api/attribute/{tableName}?{columnName}
      */
     public function getAction()
     {
-        $id = $this->Request()->getParam('id');
+        $tableName  = $this->Request()->getParam('id');
+        $columnName = $this->Request()->getParam('column_name');
 
-        $entity = $this->resource->getOne($id);
+        $entity = $this->resource->getOne($tableName, $columnName);
 
         $this->View()->assign('data', $entity);
         $this->View()->assign('success', true);
