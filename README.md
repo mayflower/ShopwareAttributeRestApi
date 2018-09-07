@@ -95,8 +95,18 @@ Due to the design of Shopware's attribute crud service, it might be possible to 
 ```
 ### DELETE
 
-
 ## Contributing
+
+We use [Shopware's Vagrant Setup](https://github.com/shopwareLabs/shopware-vagrant) for development.
+
+After Setup, you map/sync the plugin code into the vagrant box.
+
+One way to do this, is updating the `Vagrantfile` with something similar like this:
+```
+config.vm.synced_folder "../ShopwareAttributeRestApi", "/home/vagrant/www/shopware/custom/plugins/ShopwareAttributeRestApi", create: true, type: "nfs"
+```
+
+We provide a basic [Postman Collection](Shopware_Attribute_REST_API.postman_collection.json) for testing.
 
 ## License
 
