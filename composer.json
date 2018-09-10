@@ -1,0 +1,17 @@
+{
+    "name": "mayflower/shopware-attribute-rest-api",
+    "description": "Shopware plugin that exposes free text fields (attributes) via REST API",
+    "type": "shopware-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Markus Handschuh",
+            "email": "markus.handschuh@mayflower.de"
+        },
+        {
+            "name": "Jürgen Lesny",
+            "email": "juergen.lesny@mayflower.de"
+        }
+    ],
+    "require": {}
+}
