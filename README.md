@@ -2,6 +2,11 @@
 
 A Shopware plugin that exposes the free text fields (attributes) via REST API.
 
+[![Latest Stable Version](https://poser.pugx.org/mayflower/shopware-attribute-rest-api/v/stable)](https://packagist.org/packages/mayflower/shopware-attribute-rest-api)
+[![Total Downloads](https://poser.pugx.org/mayflower/shopware-attribute-rest-api/downloads)](https://packagist.org/packages/mayflower/shopware-attribute-rest-api)
+[![Latest Unstable Version](https://poser.pugx.org/mayflower/shopware-attribute-rest-api/v/unstable)](https://packagist.org/packages/mayflower/shopware-attribute-rest-api)
+[![License](https://poser.pugx.org/mayflower/shopware-attribute-rest-api/license)](https://packagist.org/packages/mayflower/shopware-attribute-rest-api)
+
 ## About
 
 This plugin uses the [Attribute Crud Service](https://developers.shopware.com/developers-guide/attribute-system/) to
